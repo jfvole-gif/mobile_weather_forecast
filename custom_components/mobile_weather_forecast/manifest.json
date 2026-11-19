@@ -1,6 +1,7 @@
 {
   "domain": "mobile_weather_forecast",
   "name": "Mobile Weather Forecast",
+  "categories": ["weather_alerts.forecasts", "presence_location.phones_companion_apps"],
   "codeowners": [
     "@jfvole-gif"
   ],
