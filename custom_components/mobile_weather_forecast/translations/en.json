@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mobile Weather Forecast",
+        "description": "Pick the entity whose position is used to fetch the weather. The best choice is a smartphone or tablet running the Home Assistant app: use its \"person\" entity, its \"device_tracker\" or its \"geocoded location\" sensor. A fixed device (PC, server) would always give the weather of the same place.",
+        "data": {
+          "name": "Name",
+          "tracked_entity": "Smartphone or tablet to follow",
+          "scan_interval": "Update interval"
+        },
+        "data_description": {
+          "name": "Name of the device that will be created, for example \"Weather here Jeff\".",
+          "tracked_entity": "Preferably the entity of a smartphone or tablet running the Companion app: person, device_tracker, or a location sensor with a \"location\" or \"latitude/longitude\" attribute.",
+          "scan_interval": "Time between two updates. Moving more than 5 km triggers an immediate update."
+        }
+      }
+    },
+    "error": {
+      "no_coordinates": "This entity does not expose coordinates. Pick a smartphone or tablet running the Companion app instead (person, device_tracker or location sensor)."
+    },
+    "abort": {
+      "already_configured": "This entity is already followed."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval": "Update interval"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "condition": {
+        "name": "Condition",
+        "state": {
+          "clear_sky": "Clear sky",
+          "mainly_clear": "Mainly clear",
+          "partly_cloudy": "Partly cloudy",
+          "overcast": "Overcast",
+          "fog": "Fog",
+          "rime_fog": "Rime fog",
+          "light_drizzle": "Light drizzle",
+          "drizzle": "Drizzle",
+          "heavy_drizzle": "Heavy drizzle",
+          "freezing_drizzle": "Freezing drizzle",
+          "heavy_freezing_drizzle": "Heavy freezing drizzle",
+          "light_rain": "Light rain",
+          "rain": "Rain",
+          "heavy_rain": "Heavy rain",
+          "freezing_rain": "Freezing rain",
+          "heavy_freezing_rain": "Heavy freezing rain",
+          "light_snow": "Light snow",
+          "snow": "Snow",
+          "heavy_snow": "Heavy snow",
+          "snow_grains": "Snow grains",
+          "light_showers": "Light showers",
+          "showers": "Showers",
+          "violent_showers": "Violent showers",
+          "snow_showers": "Snow showers",
+          "heavy_snow_showers": "Heavy snow showers",
+          "thunderstorm": "Thunderstorm",
+          "thunderstorm_hail": "Thunderstorm with hail",
+          "thunderstorm_heavy_hail": "Thunderstorm with heavy hail",
+          "unknown_code": "Unknown"
+        }
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "apparent_temperature": {
+        "name": "Feels like"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "precipitation": {
+        "name": "Precipitation"
+      },
+      "wind_speed": {
+        "name": "Wind"
+      },
+      "wind_gusts": {
+        "name": "Wind gusts"
+      },
+      "pressure": {
+        "name": "Pressure"
+      }
+    }
+  }
+}

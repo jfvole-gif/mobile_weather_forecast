@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mobile Weather Forecast",
+        "description": "Choisissez l'entité dont la position sert à récupérer la météo. Le mieux est un smartphone ou une tablette avec l'application Home Assistant : utilisez son entité « person », son « device_tracker » ou son capteur « geocoded location ». Un appareil fixe (PC, serveur) donnerait toujours la météo du même endroit.",
+        "data": {
+          "name": "Nom",
+          "tracked_entity": "Smartphone ou tablette à suivre",
+          "scan_interval": "Intervalle de mise à jour"
+        },
+        "data_description": {
+          "name": "Nom de l'appareil créé, par exemple « Météo ici Jeff ».",
+          "tracked_entity": "De préférence l'entité d'un smartphone ou d'une tablette avec l'appli Companion : person, device_tracker, ou capteur de localisation avec un attribut « location » ou « latitude/longitude ».",
+          "scan_interval": "Temps entre deux mises à jour. Un déplacement de plus de 5 km déclenche une mise à jour immédiate."
+        }
+      }
+    },
+    "error": {
+      "no_coordinates": "Cette entité n'expose pas de coordonnées. Choisissez plutôt un smartphone ou une tablette avec l'appli Companion (person, device_tracker ou capteur de localisation)."
+    },
+    "abort": {
+      "already_configured": "Cette entité est déjà suivie."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval": "Intervalle de mise à jour"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "condition": {
+        "name": "Condition",
+        "state": {
+          "clear_sky": "Ciel dégagé",
+          "mainly_clear": "Plutôt dégagé",
+          "partly_cloudy": "Partiellement nuageux",
+          "overcast": "Couvert",
+          "fog": "Brouillard",
+          "rime_fog": "Brouillard givrant",
+          "light_drizzle": "Bruine légère",
+          "drizzle": "Bruine",
+          "heavy_drizzle": "Bruine forte",
+          "freezing_drizzle": "Bruine verglaçante",
+          "heavy_freezing_drizzle": "Bruine verglaçante forte",
+          "light_rain": "Pluie faible",
+          "rain": "Pluie",
+          "heavy_rain": "Pluie forte",
+          "freezing_rain": "Pluie verglaçante",
+          "heavy_freezing_rain": "Pluie verglaçante forte",
+          "light_snow": "Neige faible",
+          "snow": "Neige",
+          "heavy_snow": "Neige forte",
+          "snow_grains": "Grains de neige",
+          "light_showers": "Averses faibles",
+          "showers": "Averses",
+          "violent_showers": "Averses violentes",
+          "snow_showers": "Averses de neige",
+          "heavy_snow_showers": "Fortes averses de neige",
+          "thunderstorm": "Orage",
+          "thunderstorm_hail": "Orage avec grêle",
+          "thunderstorm_heavy_hail": "Orage violent avec grêle",
+          "unknown_code": "Inconnu"
+        }
+      },
+      "temperature": {
+        "name": "Température"
+      },
+      "apparent_temperature": {
+        "name": "Ressenti"
+      },
+      "humidity": {
+        "name": "Humidité"
+      },
+      "precipitation": {
+        "name": "Précipitations"
+      },
+      "wind_speed": {
+        "name": "Vent"
+      },
+      "wind_gusts": {
+        "name": "Rafales"
+      },
+      "pressure": {
+        "name": "Pression"
+      }
+    }
+  }
+}

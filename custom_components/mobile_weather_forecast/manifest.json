@@ -1,0 +1,14 @@
+{
+  "domain": "mobile_weather_forecast",
+  "name": "Mobile Weather Forecast",
+  "codeowners": [
+    "@jfvole-gif"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/jfvole-gif/mobile_weather_forecast",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/jfvole-gif/mobile_weather_forecast/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
