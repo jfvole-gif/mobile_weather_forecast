@@ -27,6 +27,18 @@ It follows the position of a smartphone or tablet running the Home Assistant Com
 
 ## Installation
 
+### Quick install (My Home Assistant buttons)
+
+1. Open this repository in your Marketplace (Home Assistant 2026.11+) or in HACS (older versions) and install it:
+
+   [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=jfvole-gif&repository=mobile_weather_forecast&category=integration)
+
+2. Restart Home Assistant, then add the integration:
+
+   [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=mobile_weather_forecast)
+
+The buttons need [My Home Assistant](https://my.home-assistant.io/) to be set up with the address of your instance. If they do not work, follow the manual steps below.
+
 ### With the Marketplace (Home Assistant 2026.11 or newer)
 
 1. Go to **Settings → Marketplace** and accept the warning the first time.
