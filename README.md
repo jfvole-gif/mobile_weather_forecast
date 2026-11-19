@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="custom_components/mobile_weather_forecast/brand/icon@2x.png" width="160" alt="Mobile Weather Forecast">
+  <img src="images/mobile_weather_forecast.png" width="640" alt="Mobile Weather Forecast">
 </p>
 
 # Mobile Weather Forecast
