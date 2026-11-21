@@ -42,14 +42,17 @@ The buttons need [My Home Assistant](https://my.home-assistant.io/) to be set up
 ### With the Marketplace (Home Assistant 2026.11 or newer)
 
 1. Go to **Settings → Marketplace** and accept the warning the first time.
-2. Search for **Mobile Weather Forecast**. If it is not in the catalog yet, select **Add from link** and enter this repository (`owner/repository` or the full GitHub URL). Adding a repository from a link requires connecting your GitHub account to the Marketplace.
-3. Select **Install**, then add the integration under **Settings → Devices & services**.
+2. Search for **Mobile Weather Forecast** and select **Install**.
+3. Add the integration under **Settings → Devices & services**.
+
+If you cannot find it in the search, select **Add from link** and enter this repository (`owner/repository` or the full GitHub URL). Adding a repository from a link requires connecting your GitHub account to the Marketplace.
 
 ### With HACS (Home Assistant 2026.10 or older)
 
-1. In HACS, open the menu (⋮) and choose **Custom repositories**.
-2. Add the URL of this repository, category **Integration**.
-3. Install **Mobile Weather Forecast**, then restart Home Assistant.
+1. Open **HACS**, search for **Mobile Weather Forecast** and select **Download**.
+2. Restart Home Assistant, then add the integration under **Settings → Devices & services**.
+
+If you cannot find it in the search, add the repository by hand: in HACS, open the menu (⋮), choose **Custom repositories**, enter the URL of this repository with category **Integration**, then download it and restart Home Assistant.
 
 ### Manually
 
@@ -172,7 +175,7 @@ Weather data by [Open-Meteo.com](https://open-meteo.com/).
 
 **Mobile Weather Forecast** donne la météo de l'endroit où se trouve réellement une personne (smartphone ou tablette avec l'appli Companion), via l'API gratuite Open-Meteo, sans clé. Elle crée une entité `weather` (conditions actuelles, prévisions journalières et horaires) et des capteurs (condition, température, ressenti, humidité, précipitations, vent, rafales, pression).
 
-- **Installation** : via le Marketplace de Home Assistant (2026.11 ou plus récent, *Paramètres → Marketplace*), via HACS (versions plus anciennes, dépôt personnalisé, catégorie *Intégration*) ou en copiant `custom_components/mobile_weather_forecast` dans votre dossier `custom_components`, puis redémarrer Home Assistant.
+- **Installation** : par la recherche du Marketplace de Home Assistant (2026.11 ou plus récent, *Paramètres → Marketplace*) ou de HACS (versions plus anciennes) ; en secours, en ajoutant le dépôt comme dépôt personnalisé (catégorie *Intégration*) ; ou en copiant `custom_components/mobile_weather_forecast` dans votre dossier `custom_components`, puis redémarrer Home Assistant.
 - **Configuration** : *Paramètres → Appareils et services → Ajouter une intégration → Mobile Weather Forecast*. Choisissez l'entité du smartphone ou de la tablette (`person`, `device_tracker` ou capteur *geocoded location*).
 - **Mise à jour** : toutes les 15 minutes par défaut, et immédiatement si l'appareil se déplace de plus de 5 km.
 - **Interface** : textes disponibles en français et en anglais.

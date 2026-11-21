@@ -7,6 +7,11 @@ The **version** number is defined in `custom_components/mobile_weather_forecast/
 The **build** identifier (`YYYYMMDD-N`) is defined in `custom_components/mobile_weather_forecast/const.py`
 and is shown, together with the version, on the device page in Home Assistant.
 
+## [Unreleased]
+
+### Changed
+- README: the installation sections now lead with searching in the Marketplace or HACS, and keep adding the repository by hand (custom repository / add from link) as a fallback.
+
 ## [0.1.0] - 2026-11-19 (build 20261119-1)
 
 First public pre-release.
