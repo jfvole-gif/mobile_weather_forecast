@@ -7,12 +7,14 @@
         "data": {
           "name": "Nom",
           "tracked_entity": "Smartphone ou tablette à suivre",
-          "scan_interval": "Intervalle de mise à jour"
+          "scan_interval": "Intervalle de mise à jour",
+          "reverse_geocoding": "Afficher le nom du lieu (service OpenStreetMap)"
         },
         "data_description": {
           "name": "Nom de l'appareil créé, par exemple « Météo ici Jeff ».",
           "tracked_entity": "De préférence l'entité d'un smartphone ou d'une tablette avec l'appli Companion : person, device_tracker, ou capteur de localisation avec un attribut « location » ou « latitude/longitude ».",
-          "scan_interval": "Temps entre deux mises à jour. Un déplacement de plus de 5 km déclenche une mise à jour immédiate."
+          "scan_interval": "Temps entre deux mises à jour. Un déplacement de plus de 5 km déclenche une mise à jour immédiate.",
+          "reverse_geocoding": "Si le capteur de localisation du smartphone fournit déjà la ville, elle est utilisée telle quelle. Sinon, cette option envoie la position, arrondie à environ 1 km, au service Nominatim (OpenStreetMap) pour trouver le nom de la ville. Désactivé par défaut."
         }
       }
     },
@@ -28,7 +30,11 @@
       "init": {
         "title": "Options",
         "data": {
-          "scan_interval": "Intervalle de mise à jour"
+          "scan_interval": "Intervalle de mise à jour",
+          "reverse_geocoding": "Afficher le nom du lieu (service OpenStreetMap)"
+        },
+        "data_description": {
+          "reverse_geocoding": "Si le capteur de localisation du smartphone fournit déjà la ville, elle est utilisée telle quelle. Sinon, cette option envoie la position, arrondie à environ 1 km, au service Nominatim (OpenStreetMap) pour trouver le nom de la ville. Désactivé par défaut."
         }
       }
     }
@@ -89,6 +95,15 @@
       },
       "pressure": {
         "name": "Pression"
+      },
+      "place": {
+        "name": "Lieu"
+      },
+      "elevation": {
+        "name": "Altitude"
+      },
+      "timezone": {
+        "name": "Fuseau horaire"
       }
     }
   }

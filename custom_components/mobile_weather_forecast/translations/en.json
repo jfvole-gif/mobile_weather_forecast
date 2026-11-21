@@ -7,12 +7,14 @@
         "data": {
           "name": "Name",
           "tracked_entity": "Smartphone or tablet to follow",
-          "scan_interval": "Update interval"
+          "scan_interval": "Update interval",
+          "reverse_geocoding": "Show the place name (OpenStreetMap service)"
         },
         "data_description": {
           "name": "Name of the device that will be created, for example \"Weather here Jeff\".",
           "tracked_entity": "Preferably the entity of a smartphone or tablet running the Companion app: person, device_tracker, or a location sensor with a \"location\" or \"latitude/longitude\" attribute.",
-          "scan_interval": "Time between two updates. Moving more than 5 km triggers an immediate update."
+          "scan_interval": "Time between two updates. Moving more than 5 km triggers an immediate update.",
+          "reverse_geocoding": "If the phone's location sensor already provides the city, it is used as is. Otherwise this option sends the position, rounded to about 1 km, to the Nominatim (OpenStreetMap) service to find the city name. Off by default."
         }
       }
     },
@@ -28,7 +30,11 @@
       "init": {
         "title": "Options",
         "data": {
-          "scan_interval": "Update interval"
+          "scan_interval": "Update interval",
+          "reverse_geocoding": "Show the place name (OpenStreetMap service)"
+        },
+        "data_description": {
+          "reverse_geocoding": "If the phone's location sensor already provides the city, it is used as is. Otherwise this option sends the position, rounded to about 1 km, to the Nominatim (OpenStreetMap) service to find the city name. Off by default."
         }
       }
     }
@@ -89,6 +95,15 @@
       },
       "pressure": {
         "name": "Pressure"
+      },
+      "place": {
+        "name": "Place"
+      },
+      "elevation": {
+        "name": "Elevation"
+      },
+      "timezone": {
+        "name": "Time zone"
       }
     }
   }

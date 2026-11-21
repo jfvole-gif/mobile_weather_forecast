@@ -1,7 +1,10 @@
 {
   "domain": "mobile_weather_forecast",
   "name": "Mobile Weather Forecast",
-  "categories": ["weather_alerts.forecasts", "presence_location.phones_companion_apps"],
+  "categories": [
+    "weather_alerts.forecasts",
+    "presence_location.phones_companion_apps"
+  ],
   "codeowners": [
     "@jfvole-gif"
   ],
@@ -11,5 +14,5 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/jfvole-gif/mobile_weather_forecast/issues",
   "requirements": [],
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

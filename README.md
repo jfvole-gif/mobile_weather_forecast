@@ -8,13 +8,14 @@ A Home Assistant integration that gives you the weather **where a person actuall
 
 It follows the position of a smartphone or tablet running the Home Assistant Companion app, and builds a standard `weather` entity (current conditions, daily and hourly forecasts) plus a set of sensors, using the free [Open-Meteo](https://open-meteo.com/) API. No API key needed. Works anywhere in the world.
 
-> Status: early version (0.1.0). Feedback and bug reports are welcome.
+> Status: early version (0.2.0). Feedback and bug reports are welcome.
 
 ## Features
 
 - Follows any entity that exposes a position: `person`, `device_tracker`, or the Companion app's *geocoded location* sensor.
 - One `weather` entity with current conditions, **daily** and **hourly** forecasts, so the standard weather cards work out of the box.
-- Sensors: condition (translated), temperature, feels like, humidity, precipitation, wind, wind gusts, pressure.
+- Sensors: condition (translated), temperature, feels like, humidity, precipitation, wind, wind gusts, pressure, place name, plus elevation and time zone (diagnostic).
+- Place name: taken from the phone's own *geocoded location* sensor, or, if you enable it, looked up through OpenStreetMap (see [Place name and privacy](#place-name-and-privacy)).
 - Refreshes on a regular interval (default 15 min) **and** immediately when the tracked entity moves more than 5 km.
 - Falls back to your home position when the tracked entity has no coordinates.
 - One entry per person: add the integration once for each phone or tablet.
@@ -66,6 +67,7 @@ If you cannot find it in the search, add the repository by hand: in HACS, open t
    - **Name**: for example `Weather here Jeff`.
    - **Smartphone or tablet to follow**: the `person`, `device_tracker` or *geocoded location* sensor of the device.
    - **Update interval**: 5 to 180 minutes (15 by default).
+   - **Show the place name** (optional, off by default): finds the city name through OpenStreetMap when the tracked entity does not provide it. See [Place name and privacy](#place-name-and-privacy).
 3. Repeat for each person you want to follow.
 
 The interval can be changed later in the integration options.
@@ -95,8 +97,11 @@ For a device named *Weather here Jeff*:
 | `sensor.weather_here_jeff_wind` | wind speed (km/h) |
 | `sensor.weather_here_jeff_wind_gusts` | wind gusts (km/h) |
 | `sensor.weather_here_jeff_pressure` | sea-level pressure (hPa) |
+| `sensor.weather_here_jeff_place` | place name (city), with region, country and source as attributes |
+| `sensor.weather_here_jeff_elevation` | elevation of the position (m), diagnostic |
+| `sensor.weather_here_jeff_time_zone` | time zone, diagnostic |
 
-Entity IDs depend on the name you chose and on your Home Assistant language. The `weather` entity also exposes the attributes `tracked_entity`, `tracked_latitude`, `tracked_longitude`, `tracked_source` (`entity` or `home` when falling back) and `locality`.
+Entity IDs depend on the name you chose and on your Home Assistant language. The `weather` entity also exposes the attributes `tracked_entity`, `tracked_latitude`, `tracked_longitude`, `tracked_source` (`entity` or `home` when falling back), `locality`, `timezone` and `elevation`.
 
 ## Examples
 
@@ -134,6 +139,16 @@ cards:
       entity: weather.weather_here_jeff
 ```
 
+## Place name and privacy
+
+The place sensor (and the `locality` attribute of the weather entity) is filled in this order:
+
+1. **From the tracked entity itself**, when it provides a locality: the Companion app's *geocoded location* sensor does. Nothing extra is sent anywhere.
+2. **Otherwise, only if you enable "Show the place name"** in the setup or in the options: the position, rounded to about 1 km, is sent to [Nominatim](https://nominatim.org/) (OpenStreetMap) to find the city. The result is cached and the lookup is only repeated after a move of about 2 km. Requests are spaced by at least one second and carry a User-Agent identifying this project, as the Nominatim usage policy requires.
+3. **If neither applies**, the place sensor stays unknown.
+
+The weather itself always needs your position, rounded to about 1 km, to be sent to Open-Meteo. Place names from Nominatim are © OpenStreetMap contributors (ODbL). The public Nominatim service is meant for light use: personal use with a few devices is fine, but do not run this integration at scale against it.
+
 ## Limitations
 
 - Forecasts come from Open-Meteo, which blends several weather models. They are good in general but may be less accurate than a national weather service for very local phenomena. Keep your national provider for your home if you want the best local data.
@@ -161,13 +176,13 @@ Copy `custom_components/mobile_weather_forecast/translations/en.json` to `<langu
 
 ## Versioning
 
-The version number follows [Semantic Versioning](https://semver.org/) and is defined in `manifest.json`. A build identifier (`YYYYMMDD-N`) is defined in `const.py`. Both appear on the device page in Home Assistant (for example `0.1.0 (build 20261119-1)`) and in the log at startup. See the [changelog](CHANGELOG.md).
+The version number follows [Semantic Versioning](https://semver.org/) and is defined in `manifest.json`. A build identifier (`YYYYMMDD-N`) is defined in `const.py`. Both appear on the device page in Home Assistant (for example `0.2.0 (build 20261121-1)`) and in the log at startup. See the [changelog](CHANGELOG.md).
 
-**Releasing a new version:** update `version` in `manifest.json`, update `BUILD` in `const.py`, add an entry to `CHANGELOG.md`, then create a GitHub release with a matching tag (for example `v0.1.0`) so that HACS shows it.
+**Releasing a new version:** update `version` in `manifest.json`, update `BUILD` in `const.py`, add an entry to `CHANGELOG.md`, then create a GitHub release with a matching tag (for example `v0.2.0`) so that HACS shows it.
 
 ## Credits
 
-Weather data by [Open-Meteo.com](https://open-meteo.com/).
+Weather data by [Open-Meteo.com](https://open-meteo.com/). Optional place names: © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors, via [Nominatim](https://nominatim.org/).
 
 ---
 
@@ -178,4 +193,5 @@ Weather data by [Open-Meteo.com](https://open-meteo.com/).
 - **Installation** : par la recherche du Marketplace de Home Assistant (2026.11 ou plus récent, *Paramètres → Marketplace*) ou de HACS (versions plus anciennes) ; en secours, en ajoutant le dépôt comme dépôt personnalisé (catégorie *Intégration*) ; ou en copiant `custom_components/mobile_weather_forecast` dans votre dossier `custom_components`, puis redémarrer Home Assistant.
 - **Configuration** : *Paramètres → Appareils et services → Ajouter une intégration → Mobile Weather Forecast*. Choisissez l'entité du smartphone ou de la tablette (`person`, `device_tracker` ou capteur *geocoded location*).
 - **Mise à jour** : toutes les 15 minutes par défaut, et immédiatement si l'appareil se déplace de plus de 5 km.
+- **Nom du lieu** : repris du capteur de localisation du smartphone, ou, en option (désactivée par défaut), trouvé via Nominatim / OpenStreetMap avec une position arrondie à environ 1 km.
 - **Interface** : textes disponibles en français et en anglais.
